@@ -32,7 +32,31 @@
 %>
 <p>Lower case of SD20206: <%= makeItLower("HELLO SD20206") %></p>
 
+<%--Calling a Java Class from JSP--%>
+<p>Upper case of sd20206: <%= org.example.demo6.FunUtils.makeItUpper("sd20206")%></p>
 
+<form action="StudentServlet">
+    First name: <input type="text" name="firstName">
+    <br>
+    Last name: <input type="text" name="lastName">
+    <br>
+    <select name = "country">
+        <option>Lao</option>
+        <option>Singapore</option>
+        <option>Vietnam</option>
+    </select>
+    <br>
+
+    <input type="checkbox" name="favoriteLanguage" value="Java">Java
+    <input type="checkbox" name="favoriteLanguage" value="C#">C#
+    <input type="checkbox" name="favoriteLanguage" value="Javascript">Javascript
+    <input type="checkbox" name="favoriteLanguage" value="PHP">PHP
+
+    <br>
+
+    <input type="submit" value="Submit"/>
+
+</form>
 
 
 <a href="hello-servlet">Hello Servlet</a>
