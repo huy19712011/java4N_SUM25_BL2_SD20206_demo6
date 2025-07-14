@@ -20,6 +20,16 @@ public class StudentServlet extends HttpServlet {
 
         out.println("The Student is: " + request.getParameter("firstName") + " " + request.getParameter("lastName"));
 
+        String[] favoriteLanguages = request.getParameterValues("favoriteLanguage");
+        out.println("<br>");
+        out.println("Favorite Languages:");
+        out.println("<br>");
+        for (var lang : favoriteLanguages) {
+
+            out.println(lang);
+            out.println("<br>");
+        }
+
         out.println("</body></html>");
 
     }
