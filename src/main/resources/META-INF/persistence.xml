@@ -5,5 +5,35 @@
              version="3.0">
     <persistence-unit name="default">
 
+        <description>JpaForBeginners</description>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <!-- database connection -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:sqlserver://localhost:1433;DatabaseName=java4N_su25;encrypt=true;trustServerCertificate=true;loginTimeout=30;"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value="123456"/>
+
+            <!-- Hibernate-specific property to enable autocommit -->
+            <property name="hibernate.connection.autocommit" value="true"/>
+            <!-- enable JTA platform integration -->
+            <property name="hibernate.transaction.jta.platform" value="true"/>
+
+            <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+
+            <!--
+                        https://thorben-janssen.com/generate-database-schema-jpa/
+            -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/create.sql"/>
+
+
+        </properties>
+
+
     </persistence-unit>
 </persistence>
