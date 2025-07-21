@@ -13,7 +13,8 @@ import java.util.List;
 @WebServlet(name = "StudentServlet", value = {
         "/students",
         "/students/new",
-        "/students/insert"
+        "/students/insert",
+        "/students/delete"
 })
 public class StudentServlet extends HttpServlet {
 
@@ -33,7 +34,20 @@ public class StudentServlet extends HttpServlet {
             case "/students/insert":
                 insertStudent(request, response);
                 break;
+            case "/students/delete":
+                deleteStudent(request, response);
+                break;
         }
+    }
+
+    private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        Long id = Long.parseLong(request.getParameter("id"));
+
+        service.deleteStudent(id);
+
+        response.sendRedirect("/students");
+
     }
 
     private void insertStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {

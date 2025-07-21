@@ -25,4 +25,13 @@ public class StudentRepository {
 
         em.getTransaction().commit();
     }
+
+    public void deleteStudent(Long id) {
+
+        em.getTransaction().begin();
+
+        em.remove(em.find(Student.class, id));
+
+        em.getTransaction().commit();
+    }
 }
