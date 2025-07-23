@@ -14,7 +14,9 @@ import java.util.List;
         "/students",
         "/students/new",
         "/students/insert",
-        "/students/delete"
+        "/students/delete",
+        "/students/edit",
+        "/students/update"
 })
 public class StudentServlet extends HttpServlet {
 
@@ -37,7 +39,39 @@ public class StudentServlet extends HttpServlet {
             case "/students/delete":
                 deleteStudent(request, response);
                 break;
+            case "/students/edit":
+                editStudent(request, response);
+                break;
+            case "/students/update":
+                updateStudent(request, response);
+                break;
         }
+    }
+
+    private void updateStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        // read student from form
+        Student student = getStudentFromForm(request);
+
+        // update to DB
+        service.updateStudent(student);
+
+        // redirect to list students
+        response.sendRedirect("/students");
+    }
+
+    private void editStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // load student to form
+        // get student by id
+        Long id = Long.parseLong(request.getParameter("id"));
+        Student student = service.getStudentById(id);
+
+        // forward student to jsp
+        request.setAttribute("student", student);
+        request.getRequestDispatcher("/views/updateStudentForm.jsp")
+                .forward(request, response);
+
     }
 
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {
