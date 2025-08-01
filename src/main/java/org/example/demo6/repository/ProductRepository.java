@@ -25,4 +25,23 @@ public class ProductRepository {
         em.persist(product);
         em.getTransaction().commit();
     }
+
+    public void deleteProduct(Long id) {
+
+        em.getTransaction().begin();
+        em.remove(em.find(Product.class, id));
+        em.getTransaction().commit();
+    }
+
+    public Product getProductById(Long id) {
+
+        return em.find(Product.class, id);
+    }
+
+    public void updateProduct(Product product) {
+
+        em.getTransaction().begin();
+        em.merge(product);
+        em.getTransaction().commit();
+    }
 }
