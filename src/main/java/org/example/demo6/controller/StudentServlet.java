@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.example.demo6.entity.Student;
 import org.example.demo6.service.StudentService;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -18,7 +19,8 @@ import java.util.List;
         "/students/delete",
         "/students/edit",
         "/students/update",
-        "/students/saveStudent"
+        "/students/saveStudent",
+        "/students/showStudents"
 })
 public class StudentServlet extends HttpServlet {
 
@@ -50,7 +52,22 @@ public class StudentServlet extends HttpServlet {
             case "/students/saveStudent":
                 saveStudent(request, response);
                 break;
+            case "/students/showStudents":
+                showStudents(request, response);
+                break;
         }
+    }
+
+    private void showStudents(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        List<Student> students = service.getStudents();
+
+        JSONArray jsonArray = new JSONArray(students);
+
+        response.setContentType("application/json");
+
+        response.getWriter().write(jsonArray.toString());
+
     }
 
     private void saveStudent(HttpServletRequest request, HttpServletResponse response) throws IOException {

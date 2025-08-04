@@ -22,3 +22,21 @@ function saveStudent() {
         }
     });
 }
+
+function showStudents() {
+
+    $.ajax({
+        type: "GET",
+        url: "/students/showStudents",
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            let finalResponse = JSON.stringify(response);
+
+            $('#responseDiv').html("Your response is: " + finalResponse);
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+}
