@@ -11,6 +11,15 @@
 </h1>
 <br/>
 
+<form action="filterInput">
+    <input type="text" name="name">
+    <br>
+    <input type="text" name="password">
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+
 <%--expressions--%>
 <p>The time on server is: <%= new java.util.Date() %>  </p>
 <p>Converting to Upper Case: <%= new String("Hello sd20206").toUpperCase()%></p>
